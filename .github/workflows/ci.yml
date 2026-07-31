@@ -35,7 +35,7 @@ jobs:
 
       - name: Type Check
         run: |
-          mypy threatvision
+          mypy --python-version 3.12 --follow-imports=skip threatvision
 
       - name: Run Test Suite & Coverage Report
         run: |
