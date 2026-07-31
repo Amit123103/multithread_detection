@@ -15,7 +15,7 @@ console = Console()
 
 @click.group()
 @click.version_option(version=__version__, prog_name="threatvision-ai")
-def main():
+def main() -> None:
     """ThreatVision AI — Security Command Center & Threat Detection CLI."""
     pass
 
@@ -26,7 +26,7 @@ def main():
     "--dashboard/--no-dashboard", default=True, help="Enable live web dashboard."
 )
 @click.option("--port", "-p", default=8000, help="Dashboard port.")
-def camera(source: str | int, dashboard: bool, port: int):
+def camera(source: str | int, dashboard: bool, port: int) -> None:
     """Run real-time threat detection on camera feed."""
     try:
         src = int(source) if str(source).isdigit() else source
@@ -52,7 +52,7 @@ def camera(source: str | int, dashboard: bool, port: int):
 @click.option(
     "--dashboard/--no-dashboard", default=True, help="Enable live web dashboard."
 )
-def video(video_path: str, dashboard: bool):
+def video(video_path: str, dashboard: bool) -> None:
     """Process a recorded video file."""
     console.print(f"[bold blue]Processing video file:[/] {video_path}")
     tv = ThreatVision(video=video_path, dashboard=dashboard)
@@ -64,7 +64,7 @@ def video(video_path: str, dashboard: bool):
 
 @main.command()
 @click.argument("image_path", type=click.Path(exists=True))
-def image(image_path: str):
+def image(image_path: str) -> None:
     """Process a single image file and print detection results."""
     import cv2
 
@@ -100,7 +100,7 @@ def image(image_path: str):
 @main.command()
 @click.option("--host", default="127.0.0.1", help="Host address.")
 @click.option("--port", "-p", default=8000, help="Dashboard port.")
-def dashboard(host: str, port: int):
+def dashboard(host: str, port: int) -> None:
     """Launch standalone ThreatVision Web Dashboard & REST API server."""
     import uvicorn
 
@@ -114,7 +114,7 @@ def dashboard(host: str, port: int):
 
 @main.command()
 @click.option("--frames", "-n", default=100, help="Number of test frames.")
-def benchmark(frames: int):
+def benchmark(frames: int) -> None:
     """Run performance and FPS latency benchmark."""
     import numpy as np
 
@@ -151,7 +151,7 @@ def benchmark(frames: int):
 
 @main.command()
 @click.option("--output", "-o", default="config.yaml", help="Output file path.")
-def config(output: str):
+def config(output: str) -> None:
     """Generate default ThreatVision YAML configuration file."""
     cfg = ThreatVisionConfig()
     cfg.save_to_file(output)

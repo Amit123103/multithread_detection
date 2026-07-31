@@ -78,8 +78,13 @@ class NotificationDispatcher:
 
     def _trigger_audible_alarm(self) -> None:
         try:
-            import winsound
+            import sys
 
-            winsound.Beep(1000, 400)
+            if sys.platform == "win32":
+                import winsound
+
+                winsound.Beep(1000, 400)  # type: ignore[attr-defined]
+            else:
+                print("\a", end="")
         except Exception:
             print("\a", end="")  # Terminal bell fallback

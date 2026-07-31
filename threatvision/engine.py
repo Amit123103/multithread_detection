@@ -301,7 +301,7 @@ class ThreatVision:
 
         set_engine_instance(self)
 
-        def run_uvicorn():
+        def run_uvicorn() -> None:
             uvicorn.run(
                 app,
                 host=self.config.host,

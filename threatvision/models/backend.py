@@ -59,7 +59,7 @@ class YOLOBackend(ModelBackend):
     def __init__(self, model_name: str = "yolov8n.pt", device: str = "cpu"):
         self.model_name = model_name
         self.device = device
-        self.model = None
+        self.model: Any = None
         self._load_model()
 
     def _load_model(self) -> None:

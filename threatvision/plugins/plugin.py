@@ -38,7 +38,7 @@ class PluginRegistry:
         return list(cls._plugins.keys())
 
 
-def register_plugin(plugin_cls: Type[Plugin]):
+def register_plugin(plugin_cls: Type[Plugin]) -> Type[Plugin]:
     """Decorator to register a custom plugin class."""
     instance = plugin_cls(name=plugin_cls.__name__)
     PluginRegistry.register(instance)

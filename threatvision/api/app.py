@@ -79,7 +79,7 @@ async def health_check() -> Dict[str, Any]:
 async def get_statistics() -> Dict[str, Any]:
     """Fetch real-time telemetry statistics, FPS, and resource utilization."""
     if _global_engine is not None:
-        stats = _global_engine.get_statistics()
+        stats: Dict[str, Any] = dict(_global_engine.get_statistics())
         stats["system"] = PerformanceMonitor.get_system_resources()
         return stats
 
@@ -152,7 +152,7 @@ async def get_csv_history() -> FileResponse:
 async def video_feed() -> StreamingResponse:
     """Live Video Feed Streaming via multipart MJPEG boundary."""
 
-    def frame_generator():
+    def frame_generator() -> Any:
         while True:
             if (
                 _global_engine is not None
