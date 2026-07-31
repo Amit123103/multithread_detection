@@ -52,9 +52,9 @@ venv.bak/
 *.onnx
 *.engine
 weights/
-incidents/
-reports/
-logs/
+/incidents/
+/reports/
+/logs/
 *.mp4
 *.jpg
 *.png
