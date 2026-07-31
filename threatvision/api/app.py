@@ -96,7 +96,7 @@ async def get_statistics() -> Dict[str, Any]:
 async def detect_frame(file: UploadFile = File(...)) -> DetectionResponse:
     """Run real-time threat detection on an uploaded image file."""
     contents = await file.read()
-    nparr = np.frombuffer(contents, np.uint8)
+    nparr: np.ndarray = np.frombuffer(contents, np.uint8)
     frame = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
 
     if frame is None:

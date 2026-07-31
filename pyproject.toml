@@ -106,6 +106,6 @@ ignore_missing_imports = true
 follow_imports = "skip"
 
 [[tool.mypy.overrides]]
-module = ["numpy.*", "cv2.*", "reportlab.*", "ultralytics.*", "psutil.*", "yaml.*"]
+module = ["numpy.*", "cv2.*", "ultralytics.*", "psutil.*", "yaml.*"]
 ignore_missing_imports = true
 ignore_errors = true

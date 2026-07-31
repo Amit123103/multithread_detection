@@ -127,7 +127,7 @@ def benchmark(frames: int) -> None:
     tv.enable_weapon_detection()
     tv.enable_fire_detection()
 
-    dummy_frame = np.zeros((720, 1280, 3), dtype=np.uint8)
+    dummy_frame: np.ndarray = np.zeros((720, 1280, 3), dtype=np.uint8)
 
     start = time.time()
     for _ in range(frames):
