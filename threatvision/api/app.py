@@ -1,7 +1,7 @@
 """FastAPI REST API and WebSockets server for ThreatVision AI."""
 
-from pathlib import Path
 from typing import Any, Dict, List, Optional
+
 import cv2
 from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
@@ -10,9 +10,7 @@ from fastapi.staticfiles import StaticFiles
 import numpy as np
 from pydantic import BaseModel
 
-from threatvision.analytics.threat_engine import ThreatEvaluation, ThreatLevel
 from threatvision.dashboard import STATIC_DIR
-from threatvision.models.backend import Detection
 from threatvision.storage.incident_manager import IncidentManager
 from threatvision.utils.metrics import PerformanceMonitor
 
@@ -153,9 +151,13 @@ async def get_csv_history() -> FileResponse:
 @app.get("/stream")
 async def video_feed() -> StreamingResponse:
     """Live Video Feed Streaming via multipart MJPEG boundary."""
+
     def frame_generator():
         while True:
-            if _global_engine is not None and _global_engine.latest_annotated_frame is not None:
+            if (
+                _global_engine is not None
+                and _global_engine.latest_annotated_frame is not None
+            ):
                 frame = _global_engine.latest_annotated_frame
             else:
                 # Generate black placeholder frame when camera idle
@@ -176,6 +178,7 @@ async def video_feed() -> StreamingResponse:
                 b"Content-Type: image/jpeg\r\n\r\n" + buffer.tobytes() + b"\r\n"
             )
             import time
+
             time.sleep(0.033)
 
     return StreamingResponse(

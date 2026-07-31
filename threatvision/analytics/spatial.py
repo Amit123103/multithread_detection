@@ -1,8 +1,8 @@
 """Spatial analytics module for perimeter zones and loitering analysis."""
 
 from typing import Dict, List, Tuple
+
 from threatvision.tracking.tracker import TrackedObject
-from threatvision.utils.geometry import point_in_polygon
 
 
 class SpatialAnalytics:

@@ -8,7 +8,11 @@ import numpy as np
 
 from threatvision.alerts.alert_types import AlertMessage, AlertSeverity
 from threatvision.analytics.spatial import SpatialAnalytics
-from threatvision.analytics.threat_engine import ThreatEngine, ThreatEvaluation, ThreatLevel
+from threatvision.analytics.threat_engine import (
+    ThreatEngine,
+    ThreatEvaluation,
+    ThreatLevel,
+)
 from threatvision.camera.stream import CameraStream
 from threatvision.config.config import ThreatVisionConfig
 from threatvision.detectors.accident import AccidentDetector
@@ -92,7 +96,9 @@ class ThreatVision:
             threshold_critical=self.config.analytics.threat_threshold_critical,
         )
         self.spatial = SpatialAnalytics()
-        self.incident_manager = IncidentManager(output_dir=output_dir) if save_incidents else None
+        self.incident_manager = (
+            IncidentManager(output_dir=output_dir) if save_incidents else None
+        )
         self.pdf_exporter = PDFReportExporter(output_dir=f"{output_dir}/reports")
         self.dispatcher = NotificationDispatcher(self.config.notifications)
         self.perf_monitor = PerformanceMonitor()
@@ -198,7 +204,9 @@ class ThreatVision:
             return
 
         if not self.detectors:
-            logger.info("No detectors explicitly enabled. Enabling default person & weapon detectors.")
+            logger.info(
+                "No detectors explicitly enabled. Enabling default person & weapon detectors."
+            )
             self.enable_person_detection()
             self.enable_weapon_detection()
 
@@ -232,7 +240,11 @@ class ThreatVision:
             # Render annotations
             annotated = frame.copy()
             for d in detections:
-                color = (0, 0, 255) if evaluation.level in (ThreatLevel.HIGH, ThreatLevel.CRITICAL) else (0, 255, 0)
+                color = (
+                    (0, 0, 255)
+                    if evaluation.level in (ThreatLevel.HIGH, ThreatLevel.CRITICAL)
+                    else (0, 255, 0)
+                )
                 draw_bounding_box(
                     annotated,
                     box=d.box,
@@ -268,7 +280,11 @@ class ThreatVision:
                 alert_msg = AlertMessage(
                     title=f"HAZARD DETECTED: {evaluation.primary_threat}",
                     body=evaluation.recommendation,
-                    severity=AlertSeverity.CRITICAL if evaluation.level == ThreatLevel.CRITICAL else AlertSeverity.HIGH,
+                    severity=(
+                        AlertSeverity.CRITICAL
+                        if evaluation.level == ThreatLevel.CRITICAL
+                        else AlertSeverity.HIGH
+                    ),
                     threat_score=evaluation.score,
                     timestamp=time.strftime("%Y-%m-%d %H:%M:%S"),
                 )

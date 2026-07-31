@@ -2,7 +2,8 @@
 
 import threading
 import time
-from typing import Generator, List, Tuple, Union
+from typing import List, Tuple, Union
+
 import cv2
 import numpy as np
 
@@ -41,7 +42,9 @@ class CameraStream:
             self.image_frame = cv2.imread(self.source)
             if self.image_frame is None:
                 # Generate synthetic fallback frame if path doesn't exist
-                self.image_frame = np.zeros((self.height, self.width, 3), dtype=np.uint8)
+                self.image_frame = np.zeros(
+                    (self.height, self.width, 3), dtype=np.uint8
+                )
                 cv2.putText(
                     self.image_frame,
                     "THREATVISION TEST STREAM",
@@ -84,7 +87,9 @@ class CameraStream:
                     continue
 
             self.frame_count += 1
-            if self.skip_frames > 0 and (self.frame_count % (self.skip_frames + 1) != 0):
+            if self.skip_frames > 0 and (
+                self.frame_count % (self.skip_frames + 1) != 0
+            ):
                 continue
 
             with self.lock:
@@ -93,7 +98,10 @@ class CameraStream:
     def read(self) -> Tuple[bool, np.ndarray | None]:
         """Read latest frame."""
         if self.is_image:
-            return True, self.image_frame.copy() if self.image_frame is not None else None
+            return (
+                True,
+                self.image_frame.copy() if self.image_frame is not None else None,
+            )
 
         with self.lock:
             if self.frame is not None:

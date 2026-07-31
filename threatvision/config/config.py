@@ -93,10 +93,12 @@ class ThreatVisionConfig(BaseSettings):
         elif ext == ".toml":
             try:
                 import tomllib  # Python 3.11+
+
                 with open(path, "rb") as f:
                     content = tomllib.load(f)
             except ImportError:
                 import tomli
+
                 with open(path, "rb") as f:
                     content = tomli.load(f)
         else:

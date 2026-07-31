@@ -9,7 +9,15 @@ from threatvision.models.backend import Detection, ModelFactory
 class PackageDetector(BaseDetector):
     """Detects backpacks, suitcases, and unattended packages."""
 
-    PACKAGE_LABELS = {"backpack", "handbag", "suitcase", "bag", "package", "parcel", "luggage"}
+    PACKAGE_LABELS = {
+        "backpack",
+        "handbag",
+        "suitcase",
+        "bag",
+        "package",
+        "parcel",
+        "luggage",
+    }
 
     def __init__(self, confidence_threshold: float = 0.5, enabled: bool = True):
         super().__init__(

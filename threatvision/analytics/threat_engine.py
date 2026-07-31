@@ -1,8 +1,10 @@
 """Threat Scoring & Fusion Engine."""
 
 from enum import Enum
-from typing import Dict, List, Tuple
+from typing import Dict, List
+
 from pydantic import BaseModel
+
 from threatvision.models.backend import Detection
 
 
@@ -91,13 +93,21 @@ class ThreatEngine:
         # Classify threat level
         if max_score >= self.threshold_critical:
             level = ThreatLevel.CRITICAL
-            rec = "CRITICAL ALERT: Immediate operator inspection and safety protocol activation required."
+            rec = (
+                "CRITICAL ALERT: Immediate operator inspection and safety protocol"
+                " activation required."
+            )
         elif max_score >= self.threshold_high:
             level = ThreatLevel.HIGH
-            rec = "HIGH WARNING: Potential hazard detected. Human review recommended immediately."
+            rec = (
+                "HIGH WARNING: Potential hazard detected. Human review recommended"
+                " immediately."
+            )
         elif max_score >= self.threshold_medium:
             level = ThreatLevel.MEDIUM
-            rec = "MODERATE NOTICE: Elevated activity observed. Monitor area closely."
+            rec = (
+                "MODERATE NOTICE: Elevated activity observed. Monitor area closely."
+            )
         elif max_score >= self.threshold_low:
             level = ThreatLevel.LOW
             rec = "LOW NOTICE: Minor event detected. Proceed with normal monitoring."
