@@ -71,6 +71,7 @@ class ThreatVision:
         self.config = config or ThreatVisionConfig()
 
         # Determine camera source priority
+        self.source: Union[int, str]
         if rtsp:
             self.source = rtsp
         elif video:
@@ -185,7 +186,8 @@ class ThreatVision:
                     logger.error(f"Detector [{name}] error: {e}")
 
         # Update tracking
-        tracked_detections = self.tracker.update(all_detections, frame.shape[:2])
+        frame_shape: Tuple[int, int] = (int(frame.shape[0]), int(frame.shape[1]))
+        tracked_detections = self.tracker.update(all_detections, frame_shape)
 
         # Threat evaluation
         evaluation = self.threat_engine.evaluate(tracked_detections)

@@ -40,7 +40,7 @@ class SmokeDetector(BaseDetector):
             area = cv2.contourArea(cnt)
             if area > frame_area * 0.03:  # Only significant smoke plumes
                 x, y, bw, bh = cv2.boundingRect(cnt)
-                conf = min(0.90, float(area / (frame_area * 0.2)))
+                conf = min(0.90, area / (frame_area * 0.2))
                 detections.append(
                     Detection(
                         label="smoke",

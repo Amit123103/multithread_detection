@@ -40,7 +40,7 @@ class FireDetector(BaseDetector):
             area = cv2.contourArea(cnt)
             if area > frame_area * 0.01:  # Only significant fire patches
                 x, y, bw, bh = cv2.boundingRect(cnt)
-                conf = min(0.95, float(area / (frame_area * 0.1)))
+                conf = min(0.95, area / (frame_area * 0.1))
                 detections.append(
                     Detection(
                         label="fire",
