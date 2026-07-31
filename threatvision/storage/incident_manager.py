@@ -1,8 +1,8 @@
 """Incident Manager for automated screenshot capture, JSON logging, CSV exporting, and video clips."""
 
 import csv
-from datetime import datetime
 import json
+from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 

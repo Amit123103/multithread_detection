@@ -8,6 +8,7 @@ from pydantic import BaseModel
 
 class Detection(BaseModel):
     """Core detection data structure."""
+
     label: str
     confidence: float
     box: Tuple[int, int, int, int]  # (xmin, ymin, xmax, ymax)
@@ -64,6 +65,7 @@ class YOLOBackend(ModelBackend):
     def _load_model(self) -> None:
         try:
             from ultralytics import YOLO
+
             self.model = YOLO(self.model_name)
         except ImportError:
             raise ImportError(

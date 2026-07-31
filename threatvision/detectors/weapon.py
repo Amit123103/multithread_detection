@@ -11,7 +11,16 @@ from threatvision.models.backend import Detection, ModelFactory
 class WeaponDetector(BaseDetector):
     """Detects dangerous weapons (handguns, knives, rifles)."""
 
-    WEAPON_LABELS = {"gun", "handgun", "pistol", "rifle", "firearm", "knife", "weapon", "blade"}
+    WEAPON_LABELS = {
+        "gun",
+        "handgun",
+        "pistol",
+        "rifle",
+        "firearm",
+        "knife",
+        "weapon",
+        "blade",
+    }
 
     def __init__(self, confidence_threshold: float = 0.6, enabled: bool = True):
         super().__init__(

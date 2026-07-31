@@ -6,11 +6,11 @@ import cv2
 import numpy as np
 
 THREAT_COLORS = {
-    "SAFE": (0, 255, 127),       # Spring Green
-    "LOW": (0, 215, 255),        # Gold/Yellow
-    "MEDIUM": (0, 140, 255),     # Orange
-    "HIGH": (0, 69, 255),        # Red-Orange
-    "CRITICAL": (0, 0, 255),     # Bright Red
+    "SAFE": (0, 255, 127),  # Spring Green
+    "LOW": (0, 215, 255),  # Gold/Yellow
+    "MEDIUM": (0, 140, 255),  # Orange
+    "HIGH": (0, 69, 255),  # Red-Orange
+    "CRITICAL": (0, 0, 255),  # Bright Red
 }
 
 

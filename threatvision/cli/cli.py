@@ -22,7 +22,9 @@ def main():
 
 @main.command()
 @click.option("--source", "-s", default=0, help="Camera index or RTSP stream URL.")
-@click.option("--dashboard/--no-dashboard", default=True, help="Enable live web dashboard.")
+@click.option(
+    "--dashboard/--no-dashboard", default=True, help="Enable live web dashboard."
+)
 @click.option("--port", "-p", default=8000, help="Dashboard port.")
 def camera(source: str | int, dashboard: bool, port: int):
     """Run real-time threat detection on camera feed."""
@@ -47,7 +49,9 @@ def camera(source: str | int, dashboard: bool, port: int):
 
 @main.command()
 @click.argument("video_path", type=click.Path(exists=True))
-@click.option("--dashboard/--no-dashboard", default=True, help="Enable live web dashboard.")
+@click.option(
+    "--dashboard/--no-dashboard", default=True, help="Enable live web dashboard."
+)
 def video(video_path: str, dashboard: bool):
     """Process a recorded video file."""
     console.print(f"[bold blue]Processing video file:[/] {video_path}")
@@ -63,6 +67,7 @@ def video(video_path: str, dashboard: bool):
 def image(image_path: str):
     """Process a single image file and print detection results."""
     import cv2
+
     console.print(f"[bold cyan]Analyzing image file:[/] {image_path}")
 
     frame = cv2.imread(image_path)
@@ -101,7 +106,9 @@ def dashboard(host: str, port: int):
 
     from threatvision.api.app import app
 
-    console.print(f"[bold green]Launching ThreatVision Dashboard on http://{host}:{port}[/]")
+    console.print(
+        f"[bold green]Launching ThreatVision Dashboard on http://{host}:{port}[/]"
+    )
     uvicorn.run(app, host=host, port=port)
 
 
@@ -111,7 +118,9 @@ def benchmark(frames: int):
     """Run performance and FPS latency benchmark."""
     import numpy as np
 
-    console.print(f"[bold yellow]Running ThreatVision Benchmark on {frames} frames...[/]")
+    console.print(
+        f"[bold yellow]Running ThreatVision Benchmark on {frames} frames...[/]"
+    )
 
     tv = ThreatVision(image="synthetic.jpg")
     tv.enable_person_detection()

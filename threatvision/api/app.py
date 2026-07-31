@@ -3,11 +3,11 @@
 from typing import Any, Dict, List, Optional
 
 import cv2
+import numpy as np
 from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, HTMLResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
-import numpy as np
 from pydantic import BaseModel
 
 from threatvision.dashboard import STATIC_DIR

@@ -2,7 +2,9 @@
 
 from abc import ABC, abstractmethod
 from typing import Dict, List, Type
+
 import numpy as np
+
 from threatvision.models.backend import Detection
 
 

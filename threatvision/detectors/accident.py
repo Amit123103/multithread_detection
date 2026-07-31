@@ -28,7 +28,11 @@ class AccidentDetector(BaseDetector):
         accident_detections: List[Detection] = []
 
         # Check IoU between multiple vehicle boxes for high-overlap potential collisions
-        vehicles = [d for d in raw_detections if d.category == "vehicle" or d.label in ("car", "truck", "bus")]
+        vehicles = [
+            d
+            for d in raw_detections
+            if d.category == "vehicle" or d.label in ("car", "truck", "bus")
+        ]
 
         for i in range(len(vehicles)):
             for j in range(i + 1, len(vehicles)):

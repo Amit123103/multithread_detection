@@ -105,9 +105,7 @@ class ThreatEngine:
             )
         elif max_score >= self.threshold_medium:
             level = ThreatLevel.MEDIUM
-            rec = (
-                "MODERATE NOTICE: Elevated activity observed. Monitor area closely."
-            )
+            rec = "MODERATE NOTICE: Elevated activity observed. Monitor area closely."
         elif max_score >= self.threshold_low:
             level = ThreatLevel.LOW
             rec = "LOW NOTICE: Minor event detected. Proceed with normal monitoring."
