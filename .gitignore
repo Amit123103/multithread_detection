@@ -26,11 +26,12 @@ share/python-wheels/
 *.egg
 MANIFEST
 
-# PyTest / Coverage
+# PyTest / Coverage / Mypy
 .pytest_cache/
 .coverage
 coverage.xml
 htmlcov/
+.mypy_cache/
 
 # Environments
 .env
