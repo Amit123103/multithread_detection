@@ -25,7 +25,7 @@ jobs:
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install hatchling pytest pytest-cov ruff black mypy
+          pip install hatchling pytest pytest-cov ruff black "mypy>=1.11.0"
           pip install -e .
 
       - name: Code Formatting & Linting Check
@@ -35,7 +35,7 @@ jobs:
 
       - name: Type Check
         run: |
-          mypy --python-version ${{ matrix.python-version }} threatvision
+          mypy threatvision
 
       - name: Run Test Suite & Coverage Report
         run: |
