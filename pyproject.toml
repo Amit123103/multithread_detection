@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "threatvision-ai"
-version = "1.0.0"
+version = "2.4.1"
 description = "Production-grade, open-source AI-powered real-time threat detection computer vision framework"
 readme = "README.md"
 authors = [

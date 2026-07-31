@@ -13,7 +13,7 @@ from threatvision.engine import ThreatVision
 from threatvision.models.backend import Detection
 from threatvision.plugins import Plugin, register_plugin
 
-__version__ = "1.0.0"
+__version__ = "2.4.1"
 
 __all__ = [
     "ThreatVision",
