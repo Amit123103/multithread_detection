@@ -1,7 +1,8 @@
 """ReportLab PDF Exporter for ThreatVision AI Incident Summaries."""
 
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any, Dict
+
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
@@ -50,8 +51,12 @@ class PDFReportExporter:
         )
 
         elements = []
-        elements.append(Paragraph("THREATVISION AI — INCIDENT SAFETY REPORT", title_style))
-        elements.append(Paragraph(f"Generated for Incident ID: {incident_id}", subtitle_style))
+        elements.append(
+            Paragraph("THREATVISION AI — INCIDENT SAFETY REPORT", title_style)
+        )
+        elements.append(
+            Paragraph(f"Generated for Incident ID: {incident_id}", subtitle_style)
+        )
         elements.append(Spacer(1, 15))
 
         # Summary Table
