@@ -14,7 +14,6 @@ ThreatVision AI (`threatvision-ai`) is an open-source, modular computer vision f
 4. [Mathematical Foundations](#4-mathematical-foundations)
 5. [Installation Guide](#5-installation-guide)
 6. [Quick Start Guide](#6-quick-start-guide)
-7. [Package Structure](#7-package-structure)
 8. [Detection Modules Specification](#8-detection-modules-specification)
 9. [Threat Scoring Engine & Risk Matrix](#9-threat-scoring-engine--risk-matrix)
 10. [Web Dashboard & Command Center UI](#10-web-dashboard--command-center-ui)
@@ -282,36 +281,6 @@ tv.enable_smoke_detection(threshold=0.55)
 
 # Start real-time analysis pipeline
 tv.start(block=True)
-```
-
----
-
-## 7. Package Structure
-
-```text
-threatvision-ai/
-├── threatvision/
-│   ├── __init__.py           # Core exports
-│   ├── engine.py             # Main ThreatVision manager
-│   ├── camera/               # Camera & RTSP streaming
-│   ├── detectors/            # 11 Specialized Detectors
-│   ├── models/               # YOLO, RT-DETR, ONNX, Fallback engine
-│   ├── tracking/             # Multi-object tracker
-│   ├── analytics/            # Threat engine & spatial rules
-│   ├── storage/              # Incident manager (JSON/CSV)
-│   ├── reports/              # ReportLab PDF exporter
-│   ├── alerts/               # Alert data models
-│   ├── notifications/        # Telegram, Discord, Slack, Webhooks
-│   ├── api/                  # FastAPI server & MJPEG streaming
-│   ├── dashboard/            # Static Web UI assets
-│   ├── plugins/              # Plugin SDK & registry
-│   ├── cli/                  # Command Line Interface
-│   ├── config/               # Settings & YAML loader
-│   ├── logging/              # Structured logging
-│   └── utils/                # Geometry, draw, and metrics
-├── tests/                    # 32 Automated Unit Tests
-├── pyproject.toml            # Build metadata & dependencies
-└── README.md
 ```
 
 ---
