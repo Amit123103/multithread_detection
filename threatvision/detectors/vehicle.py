@@ -1,7 +1,9 @@
 """Vehicle detection module (Car, Truck, Bus, Motorcycle, Bicycle)."""
 
 from typing import List
+
 import numpy as np
+
 from threatvision.detectors.base import BaseDetector
 from threatvision.models.backend import Detection, ModelFactory
 
@@ -9,15 +11,7 @@ from threatvision.models.backend import Detection, ModelFactory
 class VehicleDetector(BaseDetector):
     """Detects motorized vehicles and bicycles."""
 
-    VEHICLE_LABELS = {
-        "car",
-        "truck",
-        "bus",
-        "motorcycle",
-        "motorbike",
-        "bicycle",
-        "vehicle",
-    }
+    VEHICLE_LABELS = {"car", "truck", "bus", "motorcycle", "motorbike", "bicycle", "vehicle"}
 
     def __init__(self, confidence_threshold: float = 0.5, enabled: bool = True):
         super().__init__(

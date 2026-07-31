@@ -1,10 +1,10 @@
 """Multi-channel notification dispatcher (Telegram, Discord, Slack, MS Teams, Webhook, Desktop, Email)."""
 
-import asyncio
-import json
 import logging
-from typing import List, Optional
+from typing import Optional
+
 import requests
+
 from threatvision.alerts.alert_types import AlertMessage, AlertSeverity
 from threatvision.config.config import NotificationConfig
 
@@ -19,9 +19,7 @@ class NotificationDispatcher:
 
     def dispatch(self, alert: AlertMessage) -> None:
         """Send alert message across all configured notification channels."""
-        logger.info(
-            f"Dispatching Alert [{alert.severity}]: {alert.title} - {alert.body}"
-        )
+        logger.info(f"Dispatching Alert [{alert.severity}]: {alert.title} - {alert.body}")
 
         if self.config.enable_webhook and self.config.webhook_url:
             self._send_webhook(self.config.webhook_url, alert)
@@ -68,18 +66,13 @@ class NotificationDispatcher:
         try:
             url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
             text = f"🚨 *{alert.title}*\n{alert.body}\nLevel: {alert.severity.value}\nScore: {int(alert.threat_score * 100)}%"
-            requests.post(
-                url,
-                data={"chat_id": chat_id, "text": text, "parse_mode": "Markdown"},
-                timeout=3,
-            )
+            requests.post(url, data={"chat_id": chat_id, "text": text, "parse_mode": "Markdown"}, timeout=3)
         except Exception as e:
             logger.warning(f"Telegram notification failed: {e}")
 
     def _trigger_audible_alarm(self) -> None:
         try:
             import winsound
-
             winsound.Beep(1000, 400)
         except Exception:
             print("\a", end="")  # Terminal bell fallback

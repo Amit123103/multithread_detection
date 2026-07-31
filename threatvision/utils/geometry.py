@@ -1,12 +1,9 @@
 """Geometry and spatial math utilities."""
 
 from typing import List, Tuple
-import numpy as np
 
 
-def compute_iou(
-    boxA: Tuple[int, int, int, int], boxB: Tuple[int, int, int, int]
-) -> float:
+def compute_iou(boxA: Tuple[int, int, int, int], boxB: Tuple[int, int, int, int]) -> float:
     """Calculate Intersection over Union (IoU) between two bounding boxes (xmin, ymin, xmax, ymax)."""
     xA = max(boxA[0], boxB[0])
     yA = max(boxA[1], boxB[1])

@@ -1,7 +1,9 @@
 """Person detection module."""
 
 from typing import List
+
 import numpy as np
+
 from threatvision.detectors.base import BaseDetector
 from threatvision.models.backend import Detection, ModelFactory
 

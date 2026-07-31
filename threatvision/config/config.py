@@ -3,9 +3,10 @@
 import json
 from pathlib import Path
 from typing import Any, Dict, List, Optional
-import yaml
+
 from pydantic import BaseModel, Field
 from pydantic_settings import BaseSettings
+import yaml
 
 
 class CameraConfig(BaseModel):
@@ -93,12 +94,10 @@ class ThreatVisionConfig(BaseSettings):
         elif ext == ".toml":
             try:
                 import tomllib  # Python 3.11+
-
                 with open(path, "rb") as f:
                     content = tomllib.load(f)
             except ImportError:
                 import tomli
-
                 with open(path, "rb") as f:
                     content = tomli.load(f)
         else:

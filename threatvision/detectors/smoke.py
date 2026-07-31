@@ -1,8 +1,10 @@
 """Smoke detection module."""
 
 from typing import List
+
 import cv2
 import numpy as np
+
 from threatvision.detectors.base import BaseDetector
 from threatvision.models.backend import Detection, ModelFactory
 

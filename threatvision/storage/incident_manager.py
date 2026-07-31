@@ -1,14 +1,14 @@
 """Incident Manager for automated screenshot capture, JSON logging, CSV exporting, and video clips."""
 
 import csv
-import json
-import os
-import time
 from datetime import datetime
+import json
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
+
 import cv2
 import numpy as np
+
 from threatvision.analytics.threat_engine import ThreatEvaluation
 
 

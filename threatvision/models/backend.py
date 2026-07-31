@@ -1,13 +1,13 @@
 """Model backend manager for YOLO, RT-DETR, ONNX Runtime, PyTorch, and Fallback engine."""
 
 from typing import Any, Dict, List, Tuple
+
 import numpy as np
 from pydantic import BaseModel
 
 
 class Detection(BaseModel):
     """Core detection data structure."""
-
     label: str
     confidence: float
     box: Tuple[int, int, int, int]  # (xmin, ymin, xmax, ymax)
@@ -34,9 +34,6 @@ class FallbackSyntheticBackend(ModelBackend):
 
     def predict(self, frame: np.ndarray) -> List[Detection]:
         h, w = frame.shape[:2]
-
-        # Basic motion / skin color / contrast heuristic for synthetic test detection
-        avg_bgr = np.mean(frame, axis=(0, 1))
 
         # Generate sample detection centered in frame for testing/demo
         xmin, ymin = int(w * 0.3), int(h * 0.2)
@@ -67,7 +64,6 @@ class YOLOBackend(ModelBackend):
     def _load_model(self) -> None:
         try:
             from ultralytics import YOLO
-
             self.model = YOLO(self.model_name)
         except ImportError:
             raise ImportError(

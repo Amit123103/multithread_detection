@@ -1,7 +1,9 @@
 """Behavior Detection - Fight & Physical Violence Detector."""
 
 from typing import List
+
 import numpy as np
+
 from threatvision.detectors.base import BaseDetector
 from threatvision.models.backend import Detection, ModelFactory
 from threatvision.utils.geometry import compute_iou
@@ -30,15 +32,15 @@ class FightDetector(BaseDetector):
 
         for i in range(len(persons)):
             for j in range(i + 1, len(persons)):
-                boxA = persons[i].box
-                boxB = persons[j].box
-                iou = compute_iou(boxA, boxB)
+                box_a = persons[i].box
+                box_b = persons[j].box
+                iou = compute_iou(box_a, box_b)
                 if iou > 0.35:  # Close physical contact/entanglement
                     merged_box = (
-                        min(boxA[0], boxB[0]),
-                        min(boxA[1], boxB[1]),
-                        max(boxA[2], boxB[2]),
-                        max(boxA[3], boxB[3]),
+                        min(box_a[0], box_b[0]),
+                        min(box_a[1], box_b[1]),
+                        max(box_a[2], box_b[2]),
+                        max(box_a[3], box_b[3]),
                     )
                     fight_detections.append(
                         Detection(

@@ -1,8 +1,9 @@
 """Performance and system metrics monitor."""
 
 import time
+from typing import Any, Dict
+
 import psutil
-from typing import Dict, Any
 
 
 class PerformanceMonitor:

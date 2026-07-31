@@ -1,7 +1,9 @@
 """Crowd Panic & High Density Crowd Detector."""
 
 from typing import List
+
 import numpy as np
+
 from threatvision.detectors.base import BaseDetector
 from threatvision.models.backend import Detection, ModelFactory
 
@@ -37,9 +39,7 @@ class CrowdDetector(BaseDetector):
             xmax = max(p.box[2] for p in persons)
             ymax = max(p.box[3] for p in persons)
 
-            crowd_confidence = min(
-                0.98, float(len(persons) / (self.density_threshold * 2))
-            )
+            crowd_confidence = min(0.98, float(len(persons) / (self.density_threshold * 2)))
 
             return self.filter_by_confidence(
                 [

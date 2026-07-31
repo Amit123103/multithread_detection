@@ -1,7 +1,6 @@
 """Structured logging module for ThreatVision AI."""
 
 import logging
-import sys
 from typing import Optional
 
 from rich.console import Console

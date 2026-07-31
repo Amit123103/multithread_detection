@@ -2,7 +2,9 @@
 
 import time
 from typing import Dict, List, Tuple
+
 import numpy as np
+
 from threatvision.models.backend import Detection
 from threatvision.utils.geometry import box_centroid, compute_iou
 

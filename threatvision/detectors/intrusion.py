@@ -1,7 +1,9 @@
 """Restricted Area Intrusion & Loitering Detector."""
 
 from typing import List, Tuple
+
 import numpy as np
+
 from threatvision.detectors.base import BaseDetector
 from threatvision.models.backend import Detection, ModelFactory
 from threatvision.utils.geometry import box_centroid, point_in_polygon

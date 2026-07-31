@@ -1,7 +1,9 @@
 """Behavior Detection - Fall & Person Lying Down Detector."""
 
 from typing import List
+
 import numpy as np
+
 from threatvision.detectors.base import BaseDetector
 from threatvision.models.backend import Detection, ModelFactory
 
@@ -40,10 +42,7 @@ class FallDetector(BaseDetector):
                         confidence=min(0.95, p.confidence * 1.1),
                         box=p.box,
                         category="behavior",
-                        attributes={
-                            "aspect_ratio": aspect_ratio,
-                            "state": "lying_down",
-                        },
+                        attributes={"aspect_ratio": aspect_ratio, "state": "lying_down"},
                     )
                 )
 
