@@ -2,6 +2,7 @@
 
 from click.testing import CliRunner
 
+from threatvision import __version__
 from threatvision.cli.cli import main
 
 
@@ -9,7 +10,7 @@ def test_cli_version():
     runner = CliRunner()
     result = runner.invoke(main, ["--version"])
     assert result.exit_code == 0
-    assert "1.0.0" in result.output
+    assert __version__ in result.output
 
 
 def test_cli_benchmark():
