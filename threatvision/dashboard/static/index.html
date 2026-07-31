@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThreatVision AI — Security Command Center</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo-box">
+                <div class="logo-icon">🛡️</div>
+                <div class="logo-text">
+                    <h2>THREATVISION</h2>
+                    <span>AI SECURITY HUB</span>
+                </div>
+            </div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active"><span>📹</span> Live Stream</a>
+                <a href="#alerts" class="nav-item"><span>🚨</span> Active Alerts</a>
+                <a href="#history" class="nav-item"><span>📋</span> Incident Logs</a>
+                <a href="#analytics" class="nav-item"><span>📊</span> Analytics</a>
+                <a href="#health" class="nav-item"><span>⚙️</span> System Health</a>
+            </nav>
+            <div class="status-card">
+                <div class="status-dot online"></div>
+                <div>
+                    <div class="status-title">CAMERA ENGINE</div>
+                    <div class="status-sub" id="cam-status">ACTIVE (30 FPS)</div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Workspace -->
+        <main class="content-area">
+            <!-- Header Bar -->
+            <header class="top-bar">
+                <div class="header-title">
+                    <h1>Real-Time Threat Monitoring</h1>
+                    <p>AI Operator Assistance Framework — Live Feeds & Telemetry</p>
+                </div>
+                <div class="threat-gauge-box">
+                    <span class="threat-label">CURRENT THREAT LEVEL</span>
+                    <div class="threat-badge safe" id="threat-badge">SAFE (0%)</div>
+                </div>
+            </header>
+
+            <!-- Grid Layout -->
+            <div class="dashboard-grid">
+                <!-- Live Video Feed Player -->
+                <section class="card video-card">
+                    <div class="card-header">
+                        <h3>Live Camera Feed</h3>
+                        <div class="controls">
+                            <span class="badge-live">LIVE</span>
+                            <span class="fps-tag" id="fps-display">FPS: 30.0</span>
+                        </div>
+                    </div>
+                    <div class="video-container">
+                        <img id="video-feed" src="/stream" alt="Live Camera Stream">
+                    </div>
+                </section>
+
+                <!-- Real-Time Metrics Widget -->
+                <section class="card stats-card">
+                    <div class="card-header">
+                        <h3>Threat Telemetry</h3>
+                    </div>
+                    <div class="chart-box">
+                        <canvas id="threatChart"></canvas>
+                    </div>
+                    <div class="metric-row">
+                        <div class="metric-item">
+                            <span class="m-val" id="val-detections">0</span>
+                            <span class="m-lbl">Active Detections</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="m-val" id="val-cpu">12%</span>
+                            <span class="m-lbl">CPU Load</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="m-val" id="val-ram">1.2 GB</span>
+                            <span class="m-lbl">RAM Usage</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Active Alert Feeds -->
+                <section class="card alerts-card" id="alerts">
+                    <div class="card-header">
+                        <h3>Recent Security Alerts</h3>
+                        <span class="badge-counter" id="alert-count">0 Alerts</span>
+                    </div>
+                    <div class="alert-list" id="alert-list">
+                        <div class="empty-state">No security threats detected. Environment stable.</div>
+                    </div>
+                </section>
+
+                <!-- Incident History -->
+                <section class="card history-card" id="history">
+                    <div class="card-header">
+                        <h3>Incident Recording Log</h3>
+                        <button class="btn-export" onclick="exportCSV()">Export CSV</button>
+                    </div>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Incident ID</th>
+                                    <th>Timestamp</th>
+                                    <th>Threat Level</th>
+                                    <th>Score</th>
+                                    <th>Primary Hazard</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="history-rows">
+                                <tr>
+                                    <td colspan="6" class="text-center">Loading incident log history...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
